@@ -336,6 +336,7 @@ def main():
     # Создаем файл users.xlsx, если его нет
     if not os.path.exists("users.xlsx"):
         pd.DataFrame(columns=['ФИОбла бла бла', 'Группа']).to_excel("users.xlsx", index=False)
+        print('hellooo')
 
     app = ApplicationBuilder().token(os.getenv('token', 'No token')).build()
 
