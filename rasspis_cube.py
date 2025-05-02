@@ -3,11 +3,13 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext, MessageHandler, filters, \
     ConversationHandler
 import os
+import dotenv
 import re
+
 
 # Определяем состояния
 MAIN_MENU, DIRECTION_SELECT, GROUP_SELECT, SEARCH_FIO = range(4)
-
+dotenv.load_dotenv()
 
 def load_schedule():
     try:
@@ -335,7 +337,7 @@ def main():
     if not os.path.exists("users.xlsx"):
         pd.DataFrame(columns=['ФИО', 'Группа']).to_excel("users.xlsx", index=False)
 
-    app = ApplicationBuilder().token("7595627769:AAHVgyd9_wcKCkhYIXrDw5e7W-OwP3Bmuos").build()
+    app = ApplicationBuilder().token(os.getenv('token', 'No token')).build()
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
