@@ -335,8 +335,7 @@ async def handle_fio_search(update: Update, context: CallbackContext):
 def main():
     # Создаем файл users.xlsx, если его нет
     if not os.path.exists("users.xlsx"):
-        pd.DataFrame(columns=['ФИОбла бла бла', 'Группа']).to_excel("users.xlsx", index=False)
-        print('hellooo')
+        pd.DataFrame(columns=['ФИО', 'Группа']).to_excel("users.xlsx", index=False)
 
     app = ApplicationBuilder().token(os.getenv('token', 'No token')).build()
 
